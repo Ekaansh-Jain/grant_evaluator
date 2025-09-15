@@ -1,0 +1,6 @@
+retrieval:
+  chunk_size: 1000
+  chunk_overlap: 100
+
+model:
+  embeddings: "all-MiniLM-L6-v2"
