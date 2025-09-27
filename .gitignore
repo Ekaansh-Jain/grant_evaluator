@@ -1,0 +1,94 @@
+# --------------------
+# Python
+# --------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.log
+
+# Virtual environments
+.venv
+venv/
+env/
+ENV/
+pip-wheel-metadata/
+dist/
+build/
+
+# Byte-compiled / optimized / DLL files
+*.dll
+*.dylib
+*.exe
+
+# --------------------
+# Jupyter / IPython
+# --------------------
+.ipynb_checkpoints
+*.ipynb_convert
+*.nbconvert.ipynb
+
+# --------------------
+# LangChain & AI
+# --------------------
+# Local caches
+.cache/
+.openai_cache/
+.llm_cache/
+langchain.db
+langchain_store/
+
+# Vector stores (if persisted locally)
+chroma/
+faiss_index/
+*.faiss
+*.pkl
+
+# --------------------
+# Databases
+# --------------------
+*.db
+*.sqlite3
+*.sql
+
+# --------------------
+# Environment / Secrets
+# --------------------
+.env
+.env.*
+*.json
+*.yaml
+*.yml
+
+# --------------------
+# Editors & OS
+# --------------------
+# VS Code
+.vscode/
+.history/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# --------------------
+# Misc
+# --------------------
+__pypackages__/
+venv311
+data/vectorstore/
+*.sqlite3
+*.bin
+*.pickle
