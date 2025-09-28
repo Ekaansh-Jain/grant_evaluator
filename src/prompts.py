@@ -22,6 +22,35 @@ Context:
 Return **only valid JSON**, no extra text.
 """
 
+SCORING_PROMPT = """
+You are an expert grant evaluator. Score this grant proposal based on the provided summary.
+Evaluate the following criteria:
+
+1. Research Impact (25 points):
+   - Clarity and significance of objectives
+   - Potential impact on the field
+   
+2. Methodology & Approach (25 points):
+   - Soundness of methodology
+   - Scientific rigor
+   
+3. Innovation & Novelty (20 points):
+   - Originality of approach
+   - Advancement over state-of-the-art
+   
+4. Feasibility & Resources (20 points):
+   - Resource availability
+   - Timeline and planning
+   
+5. Budget Justification (10 points):
+   - Clear and reasonable budget allocation
+
+Summary to evaluate:
+{summary}
+
+Return a JSON object with scores and feedback for each category.
+"""
+
 
 
 SCIENTIFIC_CRITIQUE_PROMPT = """
