@@ -1,8 +1,6 @@
 # src/agents/summarizer_agent.py
 from src.llm_wrapper import gemini_llm
 import json
-
-# You will define SUMMARY_PROMPT separately (see below)
 from src.prompts import SUMMARY_PROMPT
 
 def run_summarizer_extended(retriever_fn, query="Provide a structured summary of this grant proposal"):
@@ -16,10 +14,7 @@ def run_summarizer_extended(retriever_fn, query="Provide a structured summary of
     retrieved_docs = retriever_fn(query)
 
     if not retrieved_docs:
-        return {
-            key: {"text": "Not provided", "pages": [], "references": [], "notes": "No content found"}
-            for key in ["Objectives", "Methodology", "ExpectedOutcomes", "Innovation", "Feasibility"]
-        }
+        return {}
 
     # Combine text with page numbers for LLM
     context_text = ""
@@ -37,20 +32,9 @@ def run_summarizer_extended(retriever_fn, query="Provide a structured summary of
     try:
         summary_json = json.loads(response)
     except json.JSONDecodeError:
-        # fallback structure if LLM fails
-        summary_json = {
-            key: {"text": "Not provided", "pages": [], "references": [], "notes": "Failed to parse LLM output"}
-            for key in ["Objectives", "Methodology", "ExpectedOutcomes", "Innovation", "Feasibility"]
-        }
+        # If LLM fails to give valid JSON, return raw response for inspection
+        summary_json = {"raw_response": response}
 
-    # Fill missing metadata if needed
-    for key in summary_json.keys():
-        # ensure required keys exist
-        if "pages" not in summary_json[key]:
-            summary_json[key]["pages"] = []
-        if "references" not in summary_json[key]:
-            summary_json[key]["references"] = []
-        if "notes" not in summary_json[key]:
-            summary_json[key]["notes"] = "Confidence: High"
-
+    print("=== LLM Raw Response ===")
+    print(response)
     return summary_json
