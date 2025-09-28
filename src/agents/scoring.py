@@ -1,20 +1,20 @@
 import json
+from src.llm_wrapper import gemini_llm
 from src.prompts import SCORING_PROMPT
-def run_scorer(llm, summary: str):
-    """Run scoring on the summary and return a dict."""
-    prompt = SCORING_PROMPT.format(summary=summary)
-    response = llm(prompt)
 
-    # Try parsing JSON
+def run_scorer(summary: str):
+    """
+    Input: summary JSON (or text)
+    Output: JSON scores
+    """
+    prompt = SCORING_PROMPT.format(summary=summary)
+    response = gemini_llm(prompt)
+    
     try:
         scores = json.loads(response)
     except json.JSONDecodeError:
-        # If LLM outputs extra text, fix it
         import re
         match = re.search(r"\{.*\}", response, re.DOTALL)
-        if match:
-            scores = json.loads(match.group(0))
-        else:
-            raise ValueError("Invalid response format from LLM")
-
+        scores = json.loads(match.group(0)) if match else {}
+    
     return scores

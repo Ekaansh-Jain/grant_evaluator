@@ -1,17 +1,19 @@
 from langchain_community.vectorstores import Chroma
 import os
+from langchain.schema import Document
 
-def create_vectorstore(texts, embeddings, persist_dir="data/vectorstore"):
+def create_vectorstore(docs: list[Document], embeddings, persist_dir="data/vectorstore"):
     """
-    Create a Chroma vectorstore from texts and an embedding object.
+    Create a Chroma vectorstore from Document objects with metadata.
     """
     os.makedirs(persist_dir, exist_ok=True)
-    db = Chroma.from_texts(
-        texts=texts,
-        embedding=embeddings,      # must be a LangChain embedding object
+    db = Chroma.from_documents(
+        documents=docs,        # <-- preserve text + metadata
+        embedding=embeddings,  
         persist_directory=persist_dir
     )
     return db
+
 
 def load_vectorstore(embedding, persist_dir="data/vectorstore"):
     """
