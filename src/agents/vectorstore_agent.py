@@ -12,7 +12,7 @@ def vectorstore_agent(pages: list, config_path="config.yaml", persist_dir="data/
     embedder = get_embedder(config_path)
     # Use from_documents instead of from_texts
     db = create_vectorstore(documents, embedder, persist_dir)
-    retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
+    retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": 10})
 
     # wrapped retriever
     def ask(query: str):

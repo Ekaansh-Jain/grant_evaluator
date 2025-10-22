@@ -15,6 +15,6 @@ genai.configure(api_key=api_key)
 
 def gemini_llm(prompt: str) -> str:
     # Use the latest Gemini Pro model
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('gemini-2.0-flash')
     response = model.generate_content(prompt)
     return response.text

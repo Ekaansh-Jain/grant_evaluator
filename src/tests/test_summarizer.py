@@ -16,11 +16,11 @@ summary = run_summarizer_extended(vs["ask"])
 print(json.dumps(summary, indent=2))
 
 # Debug: inspect what vectorstore is returning
-retrieved_docs = vs["ask"]("Objectives of the proposal")
-for i, doc in enumerate(retrieved_docs):
-    print(f"--- Doc {i+1} ---")
-    print("Page Number:", doc["page_number"])
-    print("Source:", doc["source"])
-    print("Text preview:", doc["text"][:1000])  # first 300 chars
-    print()
+# retrieved_docs = vs["ask"]("Objectives of the proposal")
+# for i, doc in enumerate(retrieved_docs):
+#     print(f"--- Doc {i+1} ---")
+#     print("Page Number:", doc["page_number"])
+#     print("Source:", doc["source"])
+#     print("Text preview:", doc["text"][:1000])  # first 300 chars
+#     print()
 
