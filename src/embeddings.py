@@ -12,7 +12,6 @@ def get_embedder(config_path="config.yaml"):
     if cfg is None or "model" not in cfg or "embeddings" not in cfg["model"]:
         raise ValueError(f"{config_path} must contain a 'model: embeddings:' section.")
 
-    # Wrap SentenceTransformer in LangChain embedding class
     embedder =HuggingFaceEmbeddings(
         model_name=cfg["model"]["embeddings"]
     )

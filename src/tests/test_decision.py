@@ -49,17 +49,17 @@ final_decision = run_final_decision_agent(
 )
 
 # === Step 9: Display outputs ===
-# print("\n=== SUMMARY ===\n")
-# print(json.dumps(summary, indent=2))
+print("\n=== SUMMARY ===\n")
+print(json.dumps(summary, indent=2))
 
-# print("\n=== SCORER OUTPUT ===\n")
-# print(json.dumps(scores, indent=2))
+print("\n=== SCORER OUTPUT ===\n")
+print(json.dumps(scores, indent=2))
 
-# print("\n=== CRITIQUE AGENT OUTPUT ===\n")
-# print(json.dumps(critique, indent=2))
+print("\n=== CRITIQUE AGENT OUTPUT ===\n")
+print(json.dumps(critique, indent=2))
 
-# print("\n=== BUDGET AGENT OUTPUT ===\n")
-# print(json.dumps(budget_evaluation, indent=2))
+print("\n=== BUDGET AGENT OUTPUT ===\n")
+print(json.dumps(budget_evaluation, indent=2))
 
 print("\n=== FINAL DECISION AGENT OUTPUT ===\n")
 print(json.dumps(final_decision, indent=2))

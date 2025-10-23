@@ -1,14 +1,27 @@
 from langchain_community.document_loaders import PyPDFLoader
 import docx
 
-from langchain_community.document_loaders import PyMuPDFLoader
+try:
+    from langchain_community.document_loaders import PyMuPDFLoader
+    PYMUPDF_AVAILABLE = True
+except ImportError:
+    PYMUPDF_AVAILABLE = False
+    print("[WARNING] PyMuPDF not available, falling back to PyPDF")
 
 def load_pdf(path: str):
     try:
-        loader = PyMuPDFLoader(path)  # more reliable for mixed-content PDFs
-        return loader.load()
+        if PYMUPDF_AVAILABLE:
+            loader = PyMuPDFLoader(path)  # more reliable for mixed-content PDFs
+        else:
+            loader = PyPDFLoader(path)  # fallback to PyPDF
+        docs = loader.load()
+        if not docs:
+            print(f"[WARNING] No pages extracted from {path}")
+        return docs
     except Exception as e:
         print(f"[ERROR] Could not read {path}: {e}")
+        import traceback
+        traceback.print_exc()
         return []
 def load_docx(path: str):
     doc = docx.Document(path)

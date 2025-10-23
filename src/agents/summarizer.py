@@ -81,7 +81,13 @@ def run_summarizer_extended(retriever_fn):
         docs = retriever_fn(f"Find the {section} section of this grant proposal, including metrics, responsibilities, and relevant details")
         if not docs:
             continue
-        for doc in docs:
+        # Stable ordering: sort by page number when possible so prompt inputs are deterministic
+        try:
+            docs_sorted = sorted(docs, key=lambda d: int(d.get('page_number', 0)))
+        except Exception:
+            docs_sorted = docs
+
+        for doc in docs_sorted:
             page_num = doc.get("page_number", "Unknown")
             text = doc.get("text", "")
             source = doc.get("source", "Unknown")
