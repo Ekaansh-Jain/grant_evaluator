@@ -1,6 +1,24 @@
+model:
+  embeddings: "all-MiniLM-L6-v2"   # MUST be under model: embeddings:
+
+# Vectorstore settings
+vectorstore:
+  persist_dir: null                 # in-memory vectorstore
+
+# Retrieval / document chunking
 retrieval:
   chunk_size: 1500
   chunk_overlap: 200
 
-model:
-  embeddings: "all-MiniLM-L6-v2"
+# Optional pipeline info
+pipeline:
+  language: "en"
+  evaluation_type: "grant"
+
+# Embedding config required by backend
+embedding:
+  model: "default-embedding-model"
+  device: "cpu"
+  params:
+    batch_size: 32
+    max_length: 512

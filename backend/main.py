@@ -150,6 +150,9 @@ async def create_evaluation(
         return evaluation_doc
         
     except Exception as e:
+        import traceback
+        print("[ERROR] Exception in /api/evaluations:", str(e))
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Evaluation failed: {str(e)}")
     finally:
         # Clean up temp file

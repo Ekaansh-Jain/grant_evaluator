@@ -8,7 +8,7 @@ from src.agents.decision import run_final_decision_agent
 import json
 
 # === Configuration ===
-SAMPLE_FILE = "/Users/ekaanshjain/Desktop/ocjs_sample_grant.pdf"
+SAMPLE_FILE = "/Users/ekaanshjain/Desktop/OHH-funding-proposal-2022-final.pdf"
 MAX_BUDGET = 30000  # Example: max allowed budget
 
 # === Step 1: Load document ===
